@@ -5,7 +5,6 @@ const util = require('util')
 const app = express()
 const port = process.env.PORT || 3000
 
-// DB config via env with sensible defaults
 const dbConfig = {
     host: process.env.DB_HOST || 'db',
     port: process.env.DB_PORT || '3306',
@@ -25,15 +24,12 @@ async function initDb() {
         try {
             attempt++
             connection = mysql.createConnection(dbConfig)
-            // convert callbacks to promises for convenience
             connection.query = util.promisify(connection.query)
 
-            // Connect (will throw on error)
             await new Promise((resolve, reject) => {
                 connection.connect(err => err ? reject(err) : resolve())
             })
 
-            // Create table if it doesn't exist
             const createTableSql = `
                 CREATE TABLE IF NOT EXISTS people (
                     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -43,7 +39,7 @@ async function initDb() {
             `
 
             await connection.query(createTableSql)
-            console.log('Ensured table `people` exists')
+            console.log('Tabela existente ou criada com sucesso.')
             return
         } catch (err) {
             console.warn(`DB connect attempt ${attempt}/${maxAttempts} failed: ${err.code || err.message}`)
