@@ -56,7 +56,7 @@ async function initDb() {
 
 app.get('/', async (req, res) => {
     try {
-        connection.query("INSERT INTO people (nome, idade) VALUES ('Luiz', 39)");
+        connection.query("INSERT INTO people (nome, idade) VALUES ('Luiz Saluti', 39)");
         const linhas = await connection.query('SELECT nome, idade FROM people')
 
         res.write('<h1> Full Cycle Rocks!</h1>')
