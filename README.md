@@ -2,3 +2,5 @@
 Entrega do desafio do módulo docker do curso Full Cycle
 
 diretório de volume mysql será criado na primeira execução e irá persistir.
+
+node_modules será incluído na execução inicial do container da aplicação na pasta node
