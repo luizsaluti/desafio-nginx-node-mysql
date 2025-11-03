@@ -65,7 +65,7 @@ app.get('/', async (req, res) => {
 
         res.write('<h1> Full Cycle Rocks!</h1>')
         for(let i=0; i<linhas.length; i++) {
-            res.write('<p>' + linhas[i].nome + ' - ' + linhas[i].idade + '</p>')
+            res.write('<p> Nome: ' + linhas[i].nome + ' - Idade: ' + linhas[i].idade + '</p>')
         }
         res.end()
     } catch (err) {
